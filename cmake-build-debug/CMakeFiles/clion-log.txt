@@ -1,0 +1,11 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/amos/Client
+-- Boost version: 1.64.0
+-- Found the following Boost libraries:
+--   thread
+--   chrono
+--   system
+--   date_time
+--   atomic
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/amos/Client/cmake-build-debug
