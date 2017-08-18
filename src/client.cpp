@@ -31,7 +31,7 @@ void readFromServer() {
 void process(string receiveMessage) {
     vector<char> * buffer = new vector<char>();
     size_t index = receiveMessage.find("SEND ACK");
-    size_t index1 = receiveMessage.find(" SEND DATA");
+    size_t index1 = receiveMessage.find("SEND DATA");
     size_t index2 = receiveMessage.find("WRQ");
     size_t index3 = receiveMessage.find("TER");
     if(index != string::npos) {
