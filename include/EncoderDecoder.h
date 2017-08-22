@@ -11,10 +11,12 @@ public:
     EncoderDecoder();
     EncoderDecoder(const EncoderDecoder& e);
     EncoderDecoder & operator=(const EncoderDecoder& e);
-    void encode (vector<char> * outBytes, string line);
-    string decode (char nextByte);
+    void    encode (vector<char> * outBytes, string line);
+    string  decode (char nextByte);
+
     string requestFileName;
     string writeFileName;
+
     vector<char> packetsToRead;
     int currentIndex;
     vector<char> bytes;

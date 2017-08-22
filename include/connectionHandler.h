@@ -17,10 +17,11 @@ private:
 public:
     ConnectionHandler(std::string host, short port);
     virtual ~ConnectionHandler();
- 
+
+
     // Connect to the remote machine
     bool connect();
- 
+
     // Read a fixed number of bytes from the server - blocking.
     // Returns false in case the connection is closed before bytesToRead bytes can be read.
     bool getBytes(char bytes[]);
@@ -31,7 +32,10 @@ public:
 	
     // Close down the connection properly.
     void close();
- 
+
+
+
+
 }; //class ConnectionHandler
  
 #endif

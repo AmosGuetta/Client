@@ -10,7 +10,6 @@ using std::string;
 
 ConnectionHandler::ConnectionHandler(string host, short port): host_(host), port_(port), io_service_(), socket_(io_service_) {
 }
-
 ConnectionHandler::~ConnectionHandler() {
     close();
 }
@@ -20,7 +19,7 @@ void ConnectionHandler::close() {
 }
 
 bool ConnectionHandler::connect() {
-    std::cout << "Starting connect to " 
+    std::cout << "Connected to: "
         << host_ << ":" << port_ << std::endl;
     try {
 		tcp::endpoint endpoint(boost::asio::ip::address::from_string(host_), port_); // the server endpoint
@@ -41,7 +40,6 @@ bool ConnectionHandler::getBytes(char bytes[]) {
     try {
         if(!error) {
 			socket_.read_some(boost::asio::buffer(bytes,1), error);
-           // cout << "Read: " << (int)bytes[0] << endl;
         }
 		if(error)
 			throw boost::system::system_error(error);

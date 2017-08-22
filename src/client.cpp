@@ -2,12 +2,12 @@
 #include "../include/connectionHandler.h"
 #include "../include/EncoderDecoder.h"
 #include <boost/thread.hpp>
-#include <vector>
+
 
 using namespace std;
 
 bool connected = false;
-bool shouldTerminate = false;
+
 
 ConnectionHandler * connectionHandler;
 EncoderDecoder encodec;
@@ -19,7 +19,7 @@ void readFromServer() {
     string result;
     char * c = new char[1];
 
-    while(connected) {
+    while(connected && !encodec.shouldTerminate) {
         connectionHandler->getBytes(c);
         result = encodec.decode(c[0]);
         if (result.compare("") != 0)
@@ -30,9 +30,9 @@ void readFromServer() {
 
 void process(string receiveMessage) {
     vector<char> * buffer = new vector<char>();
-    size_t index = receiveMessage.find("SEND ACK");
+    size_t index  = receiveMessage.find("SEND ACK");
     size_t index1 = receiveMessage.find("SEND DATA");
-    size_t index2 = receiveMessage.find("WRQ");
+    size_t index2 = receiveMessage.find("Upload");
     size_t index3 = receiveMessage.find("TER");
     if(index != string::npos) {
         receiveMessage = receiveMessage.substr(5);
@@ -40,16 +40,13 @@ void process(string receiveMessage) {
         if (!connectionHandler->sendBytes(buffer->data(),buffer->size())) {
             cout << "Disconnected. Exiting...\n" << endl;
         }
-        //else
-          //  cout << "Sent " << receiveMessage.length() << " bytes to server" << endl;
         buffer->clear();
     }
     else if(receiveMessage.compare("SEND DATA") == 0) {
         encodec.encode(buffer, "DATA");
         if (!connectionHandler->sendBytes(buffer->data(), buffer->size())) {
             cout << "Disconnected. Exiting...\n" << endl;
-        } //else
-            //cout << "Sent " << receiveMessage.length() << " bytes to server" << endl;
+        }
         buffer->clear();
     }
     else  if(index1 != string::npos) {
@@ -57,8 +54,7 @@ void process(string receiveMessage) {
         encodec.encode(buffer, "DATA");
         if (!connectionHandler->sendBytes(buffer->data(), buffer->size())) {
             cout << "Disconnected. Exiting...\n" << endl;
-        } //else
-            //cout << "Sent " << receiveMessage.length() << " bytes to server" << endl;
+        }
         buffer->clear();
     }
     else if(index2 != string::npos) {
@@ -76,25 +72,24 @@ void process(string receiveMessage) {
 }
 
 void writeToServer() {
-    while(connected) {
+    while(connected && !encodec.shouldTerminate) {
         try {
-            const short bufsize = 1024;
-            char buf[bufsize];
-            cin.getline(buf, bufsize);
-            string line(buf);
-            if(!badCommand(line))
-                line = "a";
+            const short bufferSize = 1024;
+            char buf[bufferSize];
+            cin.getline(buf, bufferSize);
+            string message(buf);
+            if(!badCommand(message))
+                message = "a";
 
             vector<char> *buffer = new vector<char>();
-            encodec.encode(buffer, line);
+            encodec.encode(buffer, message);
 
-            char sendbuf[buffer->size()];
+            char sendBuffer[buffer->size()];
             int length = buffer->size();
             for (int i = 0; i < length; i++)
-                sendbuf[i] = buffer->at(i);
+                sendBuffer[i] = buffer->at(i);
 
-            if (!connectionHandler->sendBytes(sendbuf, length)) {
-                cout << "Disconnected. Exiting...\n" << endl;
+            if (!connectionHandler->sendBytes(sendBuffer, length)) {
                 break;
             }
             delete buffer;
@@ -104,12 +99,12 @@ void writeToServer() {
 
 }
 
-bool badCommand(string line) {
-    if(line.substr(0,3).compare("ACK") == 0)
+bool badCommand(string command) {
+    if(command.substr(0,3).compare("ACK") == 0)
         return false;
-    else if(line.compare("SEND DATA") == 0)
+    else if(command.compare("SEND DATA") == 0)
         return false;
-    else if(line.compare("DATA") == 0)
+    else if(command.compare("DATA") == 0)
         return false;
     else
         return true;

@@ -1,8 +1,6 @@
 #include "../include/EncoderDecoder.h"
-#include <iostream>
-#include <vector>
 #include <fstream>
-#include <codecvt>
+
 
 using namespace std;
 
@@ -96,13 +94,13 @@ string EncoderDecoder::decode(char nextByte) {
                 if(!shouldTerminate)
                     return "ACK " + to_string(blocknumber);
                 else
-                    return "TER ACK " + to_string(blocknumber);
+                    return "Terminated ACK " + to_string(blocknumber);
             }
 
             if (writeFileName.compare("") != 0) {
 
                 if (filesize + 1 == counterBytesSent) {
-                    string s = to_string(blocknumber) + " WRQ " + writeFileName + " complete";
+                    string s = " Uploading " + writeFileName + " is completed.";
                     writeFileName = "";
                     currentOpcode = -1;
                     bytes.clear();
@@ -169,38 +167,39 @@ string EncoderDecoder::decode(char nextByte) {
                 filename += bytes.at(i);
 
             if (bytes.at(2) == '\0')
-                filename = "del " + filename;
+                filename = "The file " + filename.substr(0,filename.size() - 1) + " deleted from the server.";
             else
-                filename = "add " + filename;
+                filename = "The file " + filename.substr(0,filename.size() - 1) + " uploaded to the server.";
+
             currentOpcode = -1;
             bytes.clear();
             currentIndex = 0;
-            return "BCAST " + filename;
+            return "Brodcast: \n" + filename;
     }
     return "";
 }
 
-void EncoderDecoder::encode(vector<char> * outBytes, string line) {
-    string opcode = "";
+void EncoderDecoder::encode(vector<char> * outBytes, string message) {
+    string opcode;
     outBytes->clear();
-    size_t index = line.find(" ");
+    size_t index = message.find(" ");
     if(index != string::npos) {
-        opcode = line.substr(0, index);
-        line = line.substr(index + 1);
+        opcode = message.substr(0, index);
+        message = message.substr(index + 1);
     }
     else
-        opcode = line;
+        opcode = message;
 
-    if(opcode.compare("RRQ") == 0) {
-        requestFileName = line;
+    if(opcode.compare("Download") == 0) {
+        requestFileName = message;
         outBytes->push_back((((short) 1) >> 8) & 0xFF);
         outBytes->push_back(((short) 1) & 0xFF);
-        for (unsigned int i = 0; i < line.length(); i++)
-            outBytes->push_back(line[i]);
+        for (unsigned int i = 0; i < message.length(); i++)
+            outBytes->push_back(message[i]);
         outBytes->push_back('\0');
     }
-    else if(opcode.compare("WRQ") == 0) {
-        writeFileName = line;
+    else if(opcode.compare("Upload") == 0) {
+        writeFileName = message;
         if(!writefile()) {
             outBytes->push_back((((short) 5) >> 8) & 0xFF);
             outBytes->push_back(((short) 5) & 0xFF);
@@ -212,73 +211,75 @@ void EncoderDecoder::encode(vector<char> * outBytes, string line) {
         else {
             outBytes->push_back((((short) 2) >> 8) & 0xFF);
             outBytes->push_back(((short) 2) & 0xFF);
-            for (unsigned int i = 0; i < line.length(); i++)
-                outBytes->push_back(line[i]);
+            for (unsigned int i = 0; i < message.length(); i++)
+                outBytes->push_back(message[i]);
             outBytes->push_back('\0');
         }
     }
     else if(opcode.compare("DATA") == 0) {
-        int packetsize = min(512,filesize - (512 * (currentBlockNumber - 1)));
+        int packetSize = min(512,filesize - (512 * (currentBlockNumber - 1)));
 
         outBytes->push_back((((short) 3) >> 8) & 0xFF);
         outBytes->push_back(((short) 3) & 0xFF);
 
-        outBytes->push_back(((short)packetsize >> 8) & 0xFF);
-        outBytes->push_back((short)packetsize & 0xFF);
+        outBytes->push_back(((short)packetSize >> 8) & 0xFF);
+        outBytes->push_back((short)packetSize & 0xFF);
 
         outBytes->push_back((currentBlockNumber >> 8) & 0xFF);
         outBytes->push_back(currentBlockNumber & 0xFF);
 
-        if(packetsize > 0) {
+        if(packetSize > 0) {
             infile->seekg((currentBlockNumber - 1) * 512, ios::beg);
 
-            char *buf = new char[packetsize];
-            infile->read(buf, packetsize);
+            char *buf = new char[packetSize];
+            infile->read(buf, packetSize);
 
 
-            for (int i = 0; i < packetsize; i++) {
+            for (int i = 0; i < packetSize; i++) {
                 outBytes->push_back(buf[i]);
             }
             delete buf;
         }
 
         currentBlockNumber++;
-        if(packetsize != 512)
+        if(packetSize != 512)
             counterBytesSent++;
-        counterBytesSent += packetsize;
+        counterBytesSent += packetSize;
     }
 
     else if(opcode.compare("ACK") == 0) {
         outBytes->push_back((((short)4) >> 8) & 0xFF);
         outBytes->push_back(((short)4) & 0xFF);
-        int block = atoi(line.c_str());
+        int block = atoi(message.c_str());
         outBytes->push_back((((short)block) >> 8) & 0xFF);
         outBytes->push_back(((short)block) & 0xFF);
     }
-    else if(opcode.compare("DIRQ") == 0) {
+    else if(opcode.compare("dir") == 0) {
         outBytes->push_back((((short)6) >> 8) & 0xFF);
         outBytes->push_back(((short)6) & 0xFF);
     }
-    else if(opcode.compare("LOGRQ") == 0) {
+    else if(opcode.compare("Login") == 0) {
 
         outBytes->push_back((((short) 7) >> 8) & 0xFF);
         outBytes->push_back(((short) 7) & 0xFF);
-        for (unsigned int i = 0; i < line.length(); i++)
-            outBytes->push_back(line[i]);
+        for (unsigned int i = 0; i < message.length(); i++)
+            outBytes->push_back(message[i]);
         outBytes->push_back('\0');
     }
-    else if(opcode.compare("DELRQ") == 0) {
+    else if(opcode.compare("Delete") == 0) {
         outBytes->push_back((((short)8) >> 8) & 0xFF);
         outBytes->push_back(((short)8) & 0xFF);
-        for (unsigned int i = 0; i < line.length(); i++)
-            outBytes->push_back(line[i]);
+        for (unsigned int i = 0; i < message.length(); i++)
+            outBytes->push_back(message[i]);
         outBytes->push_back('\0');
     }
-    else if(opcode.compare("DISC") == 0) {
+    else if(opcode.compare("Disconnect") == 0) {
         outBytes->push_back((((short)10) >> 8) & 0xFF);
         outBytes->push_back(((short)10) & 0xFF);
-        if(loggedin)
+        if(loggedin) {
             shouldTerminate = true;
+            cout << "Client disconnected. Exiting...\n" << endl;
+        }
     }
     else {
         outBytes->push_back((((short) 11) >> 8) & 0xFF);
@@ -305,7 +306,7 @@ string EncoderDecoder::parseDataToFile(vector<char> outBytes) {
     outfile.write(outBytes.data(),outBytes.size());
     outfile.flush();
     outfile.close();
-    string s = "RRQ " + requestFileName + " complete";
+    string s = "Downloading " + requestFileName + " is completed";
     requestFileName = "";
     currentOpcode = -1;
     bytes.clear();
