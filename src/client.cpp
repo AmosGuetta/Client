@@ -11,6 +11,9 @@ bool connected = false;
 
 ConnectionHandler * connectionHandler;
 EncoderDecoder encodec;
+
+class thread;
+
 void process(string basic_string);
 
 bool badCommand(string basic_string);
