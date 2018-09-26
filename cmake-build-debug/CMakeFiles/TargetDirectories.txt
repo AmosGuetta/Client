@@ -1,3 +1,3 @@
-/Users/amos/Development/Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/amos/Development/Client/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/amos/Development/Client/cmake-build-debug/CMakeFiles/Client.dir
+/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles/Client.dir
