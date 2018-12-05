@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/amos/Developments/Client
+CMAKE_SOURCE_DIR = /Users/amos/Development/Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/amos/Developments/Client/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/amos/Development/Client/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Client.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/Client.dir/flags.make
 
 CMakeFiles/Client.dir/src/client.cpp.o: CMakeFiles/Client.dir/flags.make
 CMakeFiles/Client.dir/src/client.cpp.o: ../src/client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Client.dir/src/client.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/client.cpp.o -c /Users/amos/Developments/Client/src/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Development/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Client.dir/src/client.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/client.cpp.o -c /Users/amos/Development/Client/src/client.cpp
 
 CMakeFiles/Client.dir/src/client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Client.dir/src/client.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Developments/Client/src/client.cpp > CMakeFiles/Client.dir/src/client.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Development/Client/src/client.cpp > CMakeFiles/Client.dir/src/client.cpp.i
 
 CMakeFiles/Client.dir/src/client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/src/client.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Developments/Client/src/client.cpp -o CMakeFiles/Client.dir/src/client.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Development/Client/src/client.cpp -o CMakeFiles/Client.dir/src/client.cpp.s
 
 CMakeFiles/Client.dir/src/connectionHandler.cpp.o: CMakeFiles/Client.dir/flags.make
 CMakeFiles/Client.dir/src/connectionHandler.cpp.o: ../src/connectionHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/connectionHandler.cpp.o -c /Users/amos/Developments/Client/src/connectionHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Development/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/connectionHandler.cpp.o -c /Users/amos/Development/Client/src/connectionHandler.cpp
 
 CMakeFiles/Client.dir/src/connectionHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Client.dir/src/connectionHandler.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Developments/Client/src/connectionHandler.cpp > CMakeFiles/Client.dir/src/connectionHandler.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Development/Client/src/connectionHandler.cpp > CMakeFiles/Client.dir/src/connectionHandler.cpp.i
 
 CMakeFiles/Client.dir/src/connectionHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/src/connectionHandler.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Developments/Client/src/connectionHandler.cpp -o CMakeFiles/Client.dir/src/connectionHandler.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Development/Client/src/connectionHandler.cpp -o CMakeFiles/Client.dir/src/connectionHandler.cpp.s
 
 CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o: CMakeFiles/Client.dir/flags.make
 CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o: ../src/EncoderDecoder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o -c /Users/amos/Developments/Client/src/EncoderDecoder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amos/Development/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o -c /Users/amos/Development/Client/src/EncoderDecoder.cpp
 
 CMakeFiles/Client.dir/src/EncoderDecoder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Client.dir/src/EncoderDecoder.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Developments/Client/src/EncoderDecoder.cpp > CMakeFiles/Client.dir/src/EncoderDecoder.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amos/Development/Client/src/EncoderDecoder.cpp > CMakeFiles/Client.dir/src/EncoderDecoder.cpp.i
 
 CMakeFiles/Client.dir/src/EncoderDecoder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/src/EncoderDecoder.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Developments/Client/src/EncoderDecoder.cpp -o CMakeFiles/Client.dir/src/EncoderDecoder.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amos/Development/Client/src/EncoderDecoder.cpp -o CMakeFiles/Client.dir/src/EncoderDecoder.cpp.s
 
 # Object files for target Client
 Client_OBJECTS = \
@@ -109,13 +109,13 @@ Client: CMakeFiles/Client.dir/src/client.cpp.o
 Client: CMakeFiles/Client.dir/src/connectionHandler.cpp.o
 Client: CMakeFiles/Client.dir/src/EncoderDecoder.cpp.o
 Client: CMakeFiles/Client.dir/build.make
-Client: /usr/local/Cellar/boost/1.67.0_1/lib/libboost_thread-mt.dylib
-Client: /usr/local/Cellar/boost/1.67.0_1/lib/libboost_system-mt.dylib
-Client: /usr/local/Cellar/boost/1.67.0_1/lib/libboost_chrono-mt.dylib
-Client: /usr/local/Cellar/boost/1.67.0_1/lib/libboost_date_time-mt.dylib
-Client: /usr/local/Cellar/boost/1.67.0_1/lib/libboost_atomic-mt.dylib
+Client: /usr/local/lib/libboost_thread-mt.dylib
+Client: /usr/local/lib/libboost_system-mt.dylib
+Client: /usr/local/lib/libboost_chrono-mt.dylib
+Client: /usr/local/lib/libboost_date_time-mt.dylib
+Client: /usr/local/lib/libboost_atomic-mt.dylib
 Client: CMakeFiles/Client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/amos/Developments/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/amos/Development/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -128,6 +128,6 @@ CMakeFiles/Client.dir/clean:
 .PHONY : CMakeFiles/Client.dir/clean
 
 CMakeFiles/Client.dir/depend:
-	cd /Users/amos/Developments/Client/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/amos/Developments/Client /Users/amos/Developments/Client /Users/amos/Developments/Client/cmake-build-debug /Users/amos/Developments/Client/cmake-build-debug /Users/amos/Developments/Client/cmake-build-debug/CMakeFiles/Client.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/amos/Development/Client/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/amos/Development/Client /Users/amos/Development/Client /Users/amos/Development/Client/cmake-build-debug /Users/amos/Development/Client/cmake-build-debug /Users/amos/Development/Client/cmake-build-debug/CMakeFiles/Client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Client.dir/depend
 
